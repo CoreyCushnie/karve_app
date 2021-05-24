@@ -1,16 +1,18 @@
 import React from "react";
+import { Dimensions } from 'react-native';
 import styled from "styled-components/native";
 import Text from "../components/Text";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import purchaseData from "../../data";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { LineChart } from 'react-native-chart-kit';
 
 const Home = ({ navigation }) => {
   const renderTransactions = ({ item, index }) => {
     return (
       <PurchaseContainer key={index}>
         <PurchaseInfo>
-          <Text medium>{item.name}</Text>
+          <Text bolder medium>{item.name}</Text>
           <Text small>{item.address}</Text>
         </PurchaseInfo>
         <Text medium bolder>
@@ -31,15 +33,46 @@ const Home = ({ navigation }) => {
         </Welcome>
         <MaterialIcons name="settings" size={20} color={"#d8b600"} />
       </Header>
+
       <Balance>
         <Text boldest small>
           Current Balance
         </Text>
         <Text title center bold color="#ffffff9f">
-          <FontAwesome name="dollar" size={25} color={"#d8b600"} /> 10,165.71{" "}
+          <FontAwesome name="dollar" size={20} color={"#d8b600"} /> 10,165.71{" "}
         </Text>
       </Balance>
-      <Container></Container>
+
+      <Chart>
+        <LineChart 
+        data={{
+          label: ["May", "June", "July", "Aug", "Sept", "Oct"],
+          datasets: 
+          [
+            {data: [
+              Math.random() * 10,
+              Math.random() * 10,
+              Math.random() * 10,
+              Math.random() * 10,
+              Math.random() * 10,
+              Math.random() * 10
+          
+            ]}
+          ]
+        }} 
+        
+        width={Dimensions.get("window").width}
+        height={200}
+        chartConfig={{
+          backgroundGradientFrom: "#1e1e1e",
+          backgroundGradientTo: "#1e1e1e",
+          color: (opacity = 1) => `rgba(81, 150, 244, ${opacity})`,
+          labelColor: (opacity = 0.2) => `rgba(255, 255, 255, ${opacity})`,
+          strokeWidth: 3
+        }}
+        />
+      </Chart>
+      
       <TransactionHeader>
         <Text small> Last purchase </Text>
         <TouchableOpacity>
@@ -75,7 +108,6 @@ const Header = styled.View`
   padding: 20px 20px 10px 20px;
   flex-direction: row;
   background-color: #1e1e1e;
-
   align-items: center;
 `;
 
@@ -96,6 +128,11 @@ const Balance = styled.View`
   margin: 20px auto;
   border-bottom-end-radius: 20px;
 `;
+
+const Chart = styled.View`
+  
+`
+
 const Transactions = styled.FlatList`
   flex: 1;
 `;
@@ -104,7 +141,6 @@ const TransactionHeader = styled.View`
   margin: 10px 20px 10px 20px;
   justify-content: space-between;
   border-bottom-width: 1px;
-
   border-color: #ffffff1f;
   align-items: center;
   padding-vertical: 10px;
@@ -142,4 +178,7 @@ const PurchaseInfo = styled.View`
   justify-content: center;
 `;
 
+const Charts = styled.View`
+  flex: 1;
+`
 export default Home;
