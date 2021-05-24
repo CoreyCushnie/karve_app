@@ -1,21 +1,77 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { AntDesign } from "@expo/vector-icons";
+import TouchScreen from "./src/screens/TouchScreen";
+import PinScreen from "./src/screens/Pin";
+import Home from "./src/screens/Home";
+import Send_Request from "./src/screens/SendRequest";
+import Cards from "./src/screens/Cards";
 
-export default function App() {
+const App = () => {
+  const AppStack = createStackNavigator();
+  const TabStack = createBottomTabNavigator();
+
+  const screenOptions = ({ route }) => ({
+    tabBarIcon: ({focused}) => {
+      let icon = "";
+      const color = focused ? "#d8b600" : "#828282"; 
+      const size = 25;
+
+      switch(route.name){
+        case "Home":
+          icon = 'linechart';
+          break
+          case "Cards":
+            icon = 'creditcard';
+            break
+          case "Send & Request":
+            icon = 'retweet';
+            break
+        default:
+          return
+      }
+      return <AntDesign name={icon} size={size} color={color} />
+    }
+    
+  });
+  const tbOptions = {
+    showLabel: true,
+    activeTintColor: '#d8b600',
+    style: {
+      backgroundColor: "#1e1e1e",
+      padding: 5,
+      borderTopColor: "#ffffff1a",
+      fontFamily: "Avenir",
+      justifyContent: "center"
+
+     
+  
+    },
+  };
+
+  const Tabs = () => {
+    return (
+      <TabStack.Navigator tabBarOptions={tbOptions} screenOptions={screenOptions}>
+        <TabStack.Screen name="Home" component={Home} />
+        <TabStack.Screen name="Send & Request" component={Send_Request} />
+        <TabStack.Screen name="Cards" component={Cards} />
+      </TabStack.Navigator>
+    );
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <AppStack.Navigator headerMode={"none"}>
+        <AppStack.Screen name="Tabs" component={Tabs} />
+        <AppStack.Screen name="Touch" component={TouchScreen} />
+        <AppStack.Screen name="Pin" component={PinScreen} />
+      </AppStack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
