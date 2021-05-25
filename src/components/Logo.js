@@ -80,12 +80,7 @@ export default function Logo({ mini, animation, marginT }) {
             }}
           >
             <Text style={[s.text, { fontSize: mini ? 40 : 60 }]}>
-              Okil
-              <Text
-                style={[s.text, { color: "gray", fontSize: mini ? 20 : 30 }]}
-              >
-                io
-              </Text>
+              Karve
             </Text>
           </View>
           <View>

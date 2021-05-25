@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Dimensions } from 'react-native';
 import styled from "styled-components/native";
 import Text from "../components/Text";
@@ -8,6 +8,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { LineChart } from 'react-native-chart-kit';
 
 const Home = ({ navigation }) => {
+  const [value, setValue] = useState('');
+
   const renderTransactions = ({ item, index }) => {
     return (
       <PurchaseContainer key={index}>
@@ -21,6 +23,8 @@ const Home = ({ navigation }) => {
       </PurchaseContainer>
     );
   };
+
+
 
   return (
     <Container>
@@ -46,7 +50,8 @@ const Home = ({ navigation }) => {
       <Chart>
         <LineChart 
         data={{
-          label: ["May", "June", "July", "Aug", "Sept", "Oct"],
+          labels: ["May", "June", "July", "Aug", "Sept", "Oct"],
+          
           datasets: 
           [
             {data: [
@@ -55,18 +60,22 @@ const Home = ({ navigation }) => {
               Math.random() * 10,
               Math.random() * 10,
               Math.random() * 10,
-              Math.random() * 10
+              10.16
           
             ]}
           ]
         }} 
-        
+        bezier
+        withVerticalLines={false}
+        withHorizontalLines={false}
+        yAxisLabel="$"
+        yAxisSuffix="k"
         width={Dimensions.get("window").width}
         height={200}
         chartConfig={{
           backgroundGradientFrom: "#1e1e1e",
           backgroundGradientTo: "#1e1e1e",
-          color: (opacity = 1) => `rgba(81, 150, 244, ${opacity})`,
+          color: (opacity = 1) => `rgba(255, 215, 0, ${opacity})`,
           labelColor: (opacity = 0.2) => `rgba(255, 255, 255, ${opacity})`,
           strokeWidth: 3
         }}
@@ -85,17 +94,27 @@ const Home = ({ navigation }) => {
         </IconContainerL>
         <Search
           type="text"
+          value={value}
           placeholder="Search transactions"
           placeholderTextColor="#ffffff7f"
+          onChangeText={ async (e) => {
+            setValue(e)
+            console.log(value)
+          }}
         />
       </SearchHeader>
-      <Transactions
+      {value.length === 0 ? (
+        <Transactions
         ListHeaderComponent={<></>}
         keyExtractor={(item, index) => `${index}`}
         data={purchaseData}
         renderItem={renderTransactions}
         showsVerticalScrollIndicator={true}
       />
+
+      ): (
+        <Text medium center bold margin="45px 0">Nothing To Show </Text>
+      )}
     </Container>
   );
 };
@@ -130,7 +149,7 @@ const Balance = styled.View`
 `;
 
 const Chart = styled.View`
-  
+  font-family: Avenir
 `
 
 const Transactions = styled.FlatList`
@@ -154,7 +173,7 @@ const SearchHeader = styled.View`
 const Search = styled.TextInput`
   flex: 1;
   background-color: #5f5f5f9f;
-  padding: 15px 15px 15px 55px;
+  padding: 10px 10px 10px 45px;
   border-radius: 10px;
   color: white;
 `;

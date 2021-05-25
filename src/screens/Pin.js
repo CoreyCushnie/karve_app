@@ -59,7 +59,7 @@ export default function PinScreen({ navigation }) {
         </Text>
       </UseTouch>
       <NumberPad onPress={keyPress} />
-      <Text small center margin="30px 0 0 0 " color="gold">
+      <Text small center margin="0 0 20px 0 " color="gold">
         Forgot pin?
       </Text>
     </Container>
@@ -81,7 +81,7 @@ const AccessPin = styled.View`
 `;
 
 const UseTouch = styled.TouchableOpacity`
-  margin: 25px 0 30px 0;
+  margin: 5px 0 5px 0;
   flex-direction: row;
   align-items: center;
   justify-content: center;

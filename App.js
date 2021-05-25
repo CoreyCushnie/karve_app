@@ -56,9 +56,9 @@ const App = () => {
   const Tabs = () => {
     return (
       <TabStack.Navigator tabBarOptions={tbOptions} screenOptions={screenOptions}>
+        <TabStack.Screen name="Cards" component={Cards} />
         <TabStack.Screen name="Home" component={Home} />
         <TabStack.Screen name="Send & Request" component={Send_Request} />
-        <TabStack.Screen name="Cards" component={Cards} />
       </TabStack.Navigator>
     );
   };
