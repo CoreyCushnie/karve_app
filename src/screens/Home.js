@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, Keyboard } from "react-native";
 import styled from "styled-components/native";
 import Text from "../components/Text";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import purchaseData from "../../data";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LineChart } from "react-native-chart-kit";
-import converter from '../utils/CurrencyConverter'
+import converter from "../utils/CurrencyConverter";
 
 const Home = ({ navigation }) => {
   const [value, setValue] = useState("");
+  const [focused, setFocused] = useState(false);
 
   const renderTransactions = ({ item, index }) => {
     return (
@@ -25,6 +26,11 @@ const Home = ({ navigation }) => {
         </Text>
       </PurchaseContainer>
     );
+  };
+
+  const handleFocusedView = () => {
+    Keyboard.dismiss;
+    setFocused(true);
   };
 
   return (
@@ -104,32 +110,44 @@ const Home = ({ navigation }) => {
           value={value}
           placeholder="Search transactions"
           placeholderTextColor="#ffffff7f"
+          onFocus={handleFocusedView}
           onChangeText={async (e) => {
             setValue(e);
-
           }}
         />
+        {value.length > 0 && (
+          <Touch onPress={() => setFocused(false)}>
+            <IconContainerR>
+              <MaterialIcons name="clear" size={20} color={"#d8b600"} />
+            </IconContainerR>
+          </Touch>
+        )}
       </SearchHeader>
+
       {value.length === 0 ? (
         <Transactions
           ListHeaderComponent={<></>}
-          keyExtractor={(item, index) => `${index}`}
+          keyExtractor={(item, index) => `${item}${index}`}
           data={purchaseData}
           renderItem={renderTransactions}
           showsVerticalScrollIndicator={true}
         />
       ) : (
-        
         <Transactions
           ListHeaderComponent={<></>}
-          keyExtractor={(item, index) => `${index}`}
-          data={purchaseData.filter(data => data.name.toLowerCase().includes(value.toLowerCase()))
+          keyExtractor={(item, index) => `${item}${index}-filtered`}
+          data={purchaseData.filter((data) =>
+            data.name.toLowerCase().includes(value.toLowerCase())
+          )}
+          ListEmptyComponent={
+            <Text large margin="45px auto">
+              {" "}
+              Nothing to show{" "}
+            </Text>
           }
-          ListEmptyComponent={<Text large margin="45px auto"> Nothing to show </Text>}
           renderItem={renderTransactions}
           showsVerticalScrollIndicator={true}
         />
-
       )}
     </Container>
   );
@@ -156,7 +174,7 @@ const PhotoContaier = styled.Image`
 const Touch = styled.TouchableOpacity`
   align-items: flex-end;
   justify-content: flex-end;
-  padding: 20px;
+  
 `;
 
 const Welcome = styled.View`
@@ -205,6 +223,16 @@ const IconContainerL = styled.View`
   position: absolute;
   z-index: 1;
   left: 35px;
+  width: 30px;
+`;
+
+const IconContainerR = styled.View`
+  position: absolute;
+  bottom: -10px;
+  right: 5px;
+  z-index: 1;
+  align-items: center;
+  
 `;
 
 const PurchaseContainer = styled.TouchableOpacity`
