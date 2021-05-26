@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Dimensions } from 'react-native';
 import styled from "styled-components/native";
 import Text from "../components/Text";
 import Logo from "../components/Logo";
@@ -7,7 +8,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 export default function PinScreen({ navigation }) {
   const [pinCount, setPinCount] = useState(0);
-  const total = 6;
+  const total = 4;
 
   const renderPin = () => {
     const pins = [];
@@ -45,14 +46,14 @@ export default function PinScreen({ navigation }) {
 
   return (
     <Container>
-      <Logo marginT={70} />
+      <Logo animation marginT={`${Dimensions.get("window").height * 0.06}px`} />
       <Text small center boldest margin="40px 0 0 0 ">
         Enter your {total}-digit pin.
       </Text>
 
       <AccessPin>{renderPin()}</AccessPin>
 
-      <UseTouch onPress={() => navigation.navigate("Touch")} delayPressIn={0}>
+      <UseTouch onPress={() => navigation.navigate("Login")} delayPressIn={0}>
         <MaterialIcons name="lock" size={15} color="gold" />
         <Text small center color="white" margin="0 0 0 5px">
           Sign in with Touch ID

@@ -61,12 +61,12 @@ export default function Logo({ mini, animation, marginT }) {
               justifyContent: "center",
             }}
           >
-            <Text style={[s.text, { fontSize: mini ? 40 : 60 }]}>Karve</Text>
+            <Text style={[s.text, { fontSize: mini ? 30 : 40 }]}>Karve</Text>
 
           </View>
           <View>
             <Text style={[s.footer, { fontSize: mini ? 8 : 10 }]}>
-              MOBILE BANKING APP
+              MOBILE BANKING
             </Text>
           </View>
         </FadeInText>

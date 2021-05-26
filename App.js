@@ -19,7 +19,7 @@ const App = () => {
     tabBarIcon: ({focused}) => {
       let icon = "";
       const color = focused ? "#d8b600" : "#828282"; 
-      const size = 25;
+      const size = 15;
 
       switch(route.name){
         case "Home":
@@ -43,21 +43,19 @@ const App = () => {
     activeTintColor: '#d8b600',
     style: {
       backgroundColor: "#1e1e1e",
-      padding: 5,
+      padding: 10,
+      paddingBottom: 10,
       borderTopColor: "#ffffff1a",
       fontFamily: "Avenir",
       justifyContent: "center"
-
-     
-  
     },
   };
 
   const Tabs = () => {
     return (
       <TabStack.Navigator tabBarOptions={tbOptions} screenOptions={screenOptions}>
-        <TabStack.Screen name="Send & Request" component={Send_Request} />
         <TabStack.Screen name="Home" component={Home} />
+        <TabStack.Screen name="Send & Request" component={Send_Request} />
         <TabStack.Screen name="Cards" component={Cards} />
       </TabStack.Navigator>
     );
@@ -66,9 +64,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppStack.Navigator headerMode={"none"}>
-        <AppStack.Screen name="Tabs" component={Tabs} />
         <AppStack.Screen name="Login" component={TouchScreen} />
         <AppStack.Screen name="Pin" component={PinScreen} />
+        <AppStack.Screen name="Tabs" component={Tabs} />
       </AppStack.Navigator>
     </NavigationContainer>
   );

@@ -1,11 +1,10 @@
-import React from "react";
 
 const purchaseData = [
     {
   
     name: "Audi a6 Transmission",
     address: "120 Main Street",
-    amount: "1,372",
+    amount: "1372",
   },
   {
     name: "Playstation 5",

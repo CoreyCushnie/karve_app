@@ -1,15 +1,20 @@
-import React, { useState }  from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import Text from "../components/Text";
 import KeyPad from "../components/NumberPad";
 import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import converter from "../utils/CurrencyConverter";
 
-const Send_Request = ({ navigation }) => {
-  const [amount, setAmount] = useState("0.00") 
+export default function Send_Request({ navigation }) {
+  const [amount, setAmount] = useState("0");
+
   const handlePress = (value, index) => {
-    setAmount(value)
-    console.log(value)
+    if (amount.length < 0) {
+      setAmount("0");
+    }
+    setAmount((amount) => (index != 10 ? amount + value : amount.slice(0, -1)));
   };
+
   return (
     <Container>
       <Header>
@@ -19,36 +24,38 @@ const Send_Request = ({ navigation }) => {
           <Text medium> Corey Cushnie </Text>
           <Text center> Checking Account</Text>
         </Welcome>
-        <MaterialIcons name="settings" size={20} color={"#d8b600"} />
+        <Touch onPress={() => navigation.navigate("Login")}>
+          <MaterialIcons name="settings" size={20} color={"#d8b600"} />
+        </Touch>
       </Header>
-      <Touch onPress={() => navigation.navigate("Login")}>
-        <MaterialIcons name="arrow-back-ios" size={20} color={"white"} />
-      </Touch>
-      <Text large bolder center>
+      <Text large bolder center margin="15px 0">
         Send Request
       </Text>
       <Value>
-        <Text center boldest small>
-          Current Balance
-        </Text>
+       
         <Text title center bold color="#ffffff9f">
-          <FontAwesome name="dollar" size={20} color={"#d8b600"} /> {amount}{" "}
+          <FontAwesome name="dollar" size={20} color={"#d8b600"} />{" "}
+          {converter.format(0.01 * amount).slice(1)}{" "}
+        </Text>
+        <Text center bold small>
+          Amount
         </Text>
       </Value>
-      <KeyPad onPress={handlePress} />
+      <KeyPad onPress={handlePress}/>
     </Container>
   );
-};
+}
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: #1e1e1e;
+  background-color: #1e1e1ef5;
 `;
 
 const Header = styled.View`
   padding: 20px 20px 10px 20px;
   flex-direction: row;
   align-items: center;
+  background-color: #1e1e1e;
 `;
 
 const Welcome = styled.View`
@@ -73,8 +80,7 @@ const Touch = styled.TouchableOpacity`
 const Value = styled.View`
   background-color: #1e1e1e;
   padding: 10px;
-  margin: 20px auto;
+  margin: 0px auto;
   border-bottom-end-radius: 20px;
+  width: 300px;
 `;
-
-export default Send_Request;

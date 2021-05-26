@@ -6,6 +6,7 @@ import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import purchaseData from "../../data";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LineChart } from "react-native-chart-kit";
+import converter from '../utils/CurrencyConverter'
 
 const Home = ({ navigation }) => {
   const [value, setValue] = useState("");
@@ -20,7 +21,7 @@ const Home = ({ navigation }) => {
           <Text small>{item.address}</Text>
         </PurchaseInfo>
         <Text medium bolder>
-          {item.amount}
+          {converter.format(item.amount)}
         </Text>
       </PurchaseContainer>
     );
@@ -35,7 +36,9 @@ const Home = ({ navigation }) => {
           <Text medium> Corey Cushnie </Text>
           <Text center> Checking Account</Text>
         </Welcome>
-        <MaterialIcons name="settings" size={20} color={"#d8b600"} />
+        <Touch onPress={() => navigation.navigate("Login")}>
+          <MaterialIcons name="settings" size={20} color={"#d8b600"} />
+        </Touch>
       </Header>
 
       <Balance>
@@ -70,7 +73,7 @@ const Home = ({ navigation }) => {
           withHorizontalLines={false}
           yAxisLabel="$"
           yAxisSuffix="k"
-          width={Dimensions.get("screen").width - 40}
+          width={Dimensions.get("window").width - 40}
           height={200}
           chartConfig={{
             backgroundGradientFrom: "#1e1e1e",
@@ -103,7 +106,7 @@ const Home = ({ navigation }) => {
           placeholderTextColor="#ffffff7f"
           onChangeText={async (e) => {
             setValue(e);
-            console.log(value);
+
           }}
         />
       </SearchHeader>
@@ -116,9 +119,17 @@ const Home = ({ navigation }) => {
           showsVerticalScrollIndicator={true}
         />
       ) : (
-        <Text medium center bold margin="45px 0">
-          Nothing To Show{" "}
-        </Text>
+        
+        <Transactions
+          ListHeaderComponent={<></>}
+          keyExtractor={(item, index) => `${index}`}
+          data={purchaseData.filter(data => data.name.toLowerCase().includes(value.toLowerCase()))
+          }
+          ListEmptyComponent={<Text large margin="45px auto"> Nothing to show </Text>}
+          renderItem={renderTransactions}
+          showsVerticalScrollIndicator={true}
+        />
+
       )}
     </Container>
   );
@@ -141,6 +152,13 @@ const PhotoContaier = styled.Image`
   background-color: #ffffff1f;
   border-radius: 100px;
 `;
+
+const Touch = styled.TouchableOpacity`
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 20px;
+`;
+
 const Welcome = styled.View`
   flex: 1;
   align-items: flex-start;
