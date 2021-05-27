@@ -1,9 +1,28 @@
 import React from "react";
 import styled from "styled-components/native";
 import Text from "../components/Text";
+import CustomKeyboard from "../components/KeyboardPad";
 import { MaterialIcons } from "@expo/vector-icons";
 
+
 const Cards = ({ navigation }) => {
+  
+  const keyPress = (item, index) => {
+    switch(index){
+      case "3, 0":
+          return console.log("SHIFT")
+      case "3, 8":
+          return console.log("DEL")
+      case "4, 0":
+          return console.log("CLOSE")
+      case "4, 1":
+          return console.log(" ")
+      case "4, 2":
+          return console.log("SUBMIT")
+      default:
+          return console.log(item)
+          }}
+      
   return (
     <Container>
       
@@ -13,6 +32,7 @@ const Cards = ({ navigation }) => {
       <Text large bolder center>
         Cards
       </Text>
+      <CustomKeyboard onPress={keyPress}/>
     </Container>
   );
 };

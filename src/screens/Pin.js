@@ -46,7 +46,7 @@ export default function PinScreen({ navigation }) {
 
   return (
     <Container>
-      <Logo animation marginT={`${Dimensions.get("window").height * 0.06}px`} />
+      <Logo animation marginT={80} />
       <Text small center boldest margin="40px 0 0 0 ">
         Enter your {total}-digit pin.
       </Text>

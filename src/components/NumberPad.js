@@ -1,7 +1,6 @@
 import React from "react";
 import { Dimensions } from "react-native";
 import styled from "styled-components/native";
-
 import { MaterialIcons } from "@expo/vector-icons";
 import Text from "./Text";
 
@@ -11,7 +10,7 @@ export default function NumberPad({ onPress, ...props }) {
 
     for (let i = 1; i < 10; i++) res.push(i);
     res.push(0);
-    res.push(<MaterialIcons name="arrow-left"  />);
+    res.push(<MaterialIcons name="arrow-left"/>);
 
     return res;
   }

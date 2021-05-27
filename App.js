@@ -64,9 +64,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppStack.Navigator headerMode={"none"}>
+        <AppStack.Screen name="Tabs" component={Tabs} />
         <AppStack.Screen name="Login" component={TouchScreen} />
         <AppStack.Screen name="Pin" component={PinScreen} />
-        <AppStack.Screen name="Tabs" component={Tabs} />
       </AppStack.Navigator>
     </NavigationContainer>
   );

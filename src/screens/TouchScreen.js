@@ -3,12 +3,12 @@ import { Dimensions } from 'react-native';
 import styled from "styled-components/native";
 import Text from "../components/Text";
 import Logo from "../components/Logo";
-import { MaterialIcons, Fontisto } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function TouchScreen({ navigation }) {
   return (
     <Container>
-      <Logo animation marginT={`${Dimensions.get("window").height * 0.06}px`} />
+      <Logo animation marginT={80} />
 
       <Touch onPress={() => navigation.navigate("Tabs")} delayPressIn={0}>
         <Circle bgColor="#3b3200">
