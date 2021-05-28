@@ -1,7 +1,6 @@
 
 const purchaseData = [
     {
-  
     name: "Audi a6 Transmission",
     address: "120 Main Street",
     amount: "1372",
