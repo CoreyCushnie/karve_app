@@ -98,7 +98,7 @@ const s = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    height: 100,
+    height: "100px",
   },
 
   text: {

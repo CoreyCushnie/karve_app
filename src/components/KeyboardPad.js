@@ -16,7 +16,7 @@ export default function CustomKeyboard({
       ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
       [
         <MaterialIcons
-          style={{ alignItems: "center" }}
+          style={{ paddingHorizontal: 10 }}
           name="file-upload"
           color={shiftEnabled ? "gold" : "white"}
         />,
@@ -27,7 +27,7 @@ export default function CustomKeyboard({
         "b",
         "n",
         "m",
-        <MaterialIcons style={{ alignItems: "center" }} name="backspace" />,
+        <MaterialIcons style={{ paddingHorizontal: 10 }} name="backspace" />,
       ],
       [
         <MaterialIcons
@@ -63,11 +63,11 @@ export default function CustomKeyboard({
             {item.map((i, idx) => {
               return (
                 <Keys
-                style={{ width: (typeof i == "string") ? "35px" : "auto" }}
+                style={{ width: (typeof i == "string") && "35px" }}
                   key={`${idx}-${i}`}
                   onPress={() => onPress(i, `${index}, ${idx}`)}
                 >
-                  <Text large>{i}</Text>
+                  <Text large bolder >{i}</Text>
                 </Keys>
               );
             })}

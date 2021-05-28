@@ -46,7 +46,7 @@ const App = () => {
       padding: 10,
       paddingBottom: 10,
       borderTopColor: "#ffffff1a",
-      fontFamily: "Avenir",
+      // fontFamily: "Avenir",
       justifyContent: "center"
     },
   };
@@ -54,8 +54,8 @@ const App = () => {
   const Tabs = () => {
     return (
       <TabStack.Navigator tabBarOptions={tbOptions} screenOptions={screenOptions}>
-        <TabStack.Screen name="Home" component={Home} />
         <TabStack.Screen name="Send & Request" component={Send_Request} />
+        <TabStack.Screen name="Home" component={Home} />
         <TabStack.Screen name="Cards" component={Cards} />
       </TabStack.Navigator>
     );

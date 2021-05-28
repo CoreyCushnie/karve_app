@@ -4,11 +4,14 @@ import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import Text from "./Text";
 
-export default function NumberPad({ onPress, ...props }) {
+export default function NumberPad({ cash, onPress, ...props }) {
   function numbers() {
     const res = [];
 
     for (let i = 1; i < 10; i++) res.push(i);
+    if (cash) {
+      res.push(".")
+    }
     res.push(0);
     res.push(<MaterialIcons name="arrow-left"/>);
 
