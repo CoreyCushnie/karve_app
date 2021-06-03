@@ -8,7 +8,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 export default function PinScreen({ navigation }) {
   const [pinCount, setPinCount] = useState(0);
-  const total = 4;
+  const total = 5;
 
   const renderPin = () => {
     const pins = [];

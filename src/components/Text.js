@@ -10,7 +10,7 @@ export default function TextComponent ({ ...props})  {
 
 const Text = styled.Text`
     color: ${(props => props.color ? props.color : "white" )};
-    // font-family: Avenir;
+    font-family: Avenir;
     margin: ${( {margin} ) => margin ?? 0}
     align-self: ${({ alignSelf }) => alignSelf ?? "none"}
     

@@ -7,6 +7,7 @@ import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import converter from "../utils/CurrencyConverter";
 import Header from "../components/Header";
 import Button from "../components/Button";
+import  UserData from "../../UserData"
 import { Shake, Success, Fade } from "../utils/Effects";
 
 export default function Send_Request({ navigation }) {
@@ -165,6 +166,7 @@ export default function Send_Request({ navigation }) {
           textColor="white"
           onPress={() => {
             showSuccess("SEND");
+            // navigation.navigate("Users", {totalAmount: dollarAmount + centAmount, transactionType: sent ?  "sent" :  "requested" })
           }}
         />
         <Button
@@ -172,6 +174,7 @@ export default function Send_Request({ navigation }) {
           buttonColor="#1e1e1e"
           textColor="white"
           onPress={() => {
+            // navigation.navigate("Users")
             showSuccess("REQUEST");
           }}
         />

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Dimensions, Keyboard } from "react-native";
 import styled from "styled-components/native";
 import Text from "../components/Text";
-import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import purchaseData from "../../data";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LineChart } from "react-native-chart-kit";

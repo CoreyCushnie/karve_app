@@ -61,7 +61,7 @@ export default function Logo({ mini, animation, marginT }) {
               justifyContent: "center",
             }}
           >
-            <Text style={[s.text, { fontSize: mini ? 30 : 40 }]}>Karve</Text>
+            <Text style={[s.text, { fontSize: mini ? 30 : 40 }]}>Title</Text>
 
           </View>
           <View>
@@ -80,7 +80,7 @@ export default function Logo({ mini, animation, marginT }) {
             }}
           >
             <Text style={[s.text, { fontSize: mini ? 40 : 60 }]}>
-              Karve
+              No-name
             </Text>
           </View>
           <View>

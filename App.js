@@ -9,6 +9,7 @@ import TouchScreen from "./src/screens/TouchScreen";
 import PinScreen from "./src/screens/Pin";
 import Home from "./src/screens/Home";
 import Send_Request from "./src/screens/SendRequest";
+import Users from "./src/screens/Users";
 import Cards from "./src/screens/Cards";
 
 const App = () => {
@@ -46,7 +47,7 @@ const App = () => {
       padding: 10,
       paddingBottom: 10,
       borderTopColor: "#ffffff1a",
-      // fontFamily: "Avenir",
+      fontFamily: "Avenir",
       justifyContent: "center"
     },
   };
@@ -55,18 +56,19 @@ const App = () => {
     return (
       <TabStack.Navigator tabBarOptions={tbOptions} screenOptions={screenOptions}>
         <TabStack.Screen name="Home" component={Home} />
-        <TabStack.Screen name="Cards" component={Cards} />
         <TabStack.Screen name="Send & Request" component={Send_Request} />
+        <TabStack.Screen name="Cards" component={Cards} />
       </TabStack.Navigator>
     );
   };
 
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <AppStack.Navigator headerMode={"none"}>
         <AppStack.Screen name="Login" component={TouchScreen} />
         <AppStack.Screen name="Pin" component={PinScreen} />
         <AppStack.Screen name="Tabs" component={Tabs} />
+        <AppStack.Screen name="Users" component={Users} />
       </AppStack.Navigator>
     </NavigationContainer>
   );
