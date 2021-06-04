@@ -16,7 +16,7 @@ export default function TouchScreen({ navigation }) {
             <Circle bgColor="#b19500">
               <Circle bgColor="#d8b600">
                 <Circle bgColor="#ffd700">
-                  <MaterialIcons name="fingerprint" size={35} color="red" />
+                  <MaterialIcons name="fingerprint" size={35} color="white" />
                 </Circle>
               </Circle>
             </Circle>

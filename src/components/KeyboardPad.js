@@ -11,7 +11,7 @@ export default function CustomKeyboard({
 }) {
   function renderKeys() {
     const keys = [
-      [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+      ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
       ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
       ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
       [

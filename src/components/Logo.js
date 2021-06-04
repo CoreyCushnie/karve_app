@@ -16,7 +16,7 @@ const FadeInText = (props) => {
       duration: 1000,
       useNativeDriver: true,
     }).start();
-  }, []);
+  }, [fadeAnim]);
 
   const fadeAnim2 = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -25,7 +25,7 @@ const FadeInText = (props) => {
       duration: 3000,
       useNativeDriver: true,
     }).start();
-  }, []);
+  }, [fadeAnim2]);
 
 
   return (
