@@ -87,6 +87,6 @@ const s = StyleSheet.create({
     justifyContent: "center",
     height: Dimensions.get("window").height / 4,
     width: Dimensions.get("window").width * 0.8,
-    borderRadius: "20px"
+    borderRadius: 20
   },
 });
