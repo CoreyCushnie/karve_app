@@ -1,10 +1,4 @@
-Certainly! Here's a README template for your banking UI project named "Karve" built with React Native, styled-components, and custom components:
-
----
-
 # Karve Banking UI
-
-![Karve Banking UI Logo](karve-logo.png)
 
 ## Table of Contents
 - [Introduction](#introduction)
